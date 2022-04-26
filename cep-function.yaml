@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  cepfunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 10
+      Role: 'arn:aws:iam::280803372865:role/service-role/cep-function-role-y8zamoh5'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /password-s3
+            Method: GET
+      Environment:
+        Variables:
+          BUCKET_NAME: >-
+            AQICAHj1JDVLt82fjKHPxjo8SjqD5qWdK3yEjdltHhppMnkjAwEDxo1gykxHV2nCUnaNP1DUAAAAcjBwBgkqhkiG9w0BBwagYzBhAgEAMFwGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMb3cUFO0fmpHSjrfuAgEQgC+Hza/21L3lO0GtcNLdqkiFBCQp3ORkM7V+l3BBYirHJWk8UDM0dvhBtc8rvF/1oA==
+          KMS_KEY_ID: >-
+            AQICAHj1JDVLt82fjKHPxjo8SjqD5qWdK3yEjdltHhppMnkjAwFOe4WAj2DxpRa3x/XLBPY7AAAAgzCBgAYJKoZIhvcNAQcGoHMwcQIBADBsBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDNUKzdGJCzWUqtjj4wIBEIA/JvwX2goLDKXQCCCfud3Xx52uylSOtmj8ZjiZfM2geLq8G6icMF2El838k6MDt9wS6U6b8nf1Z5PeBCHd9CGf
+      KmsKeyArn: >-
+        arn:aws:kms:us-east-1:280803372865:key/97a026f2-7008-4b4c-860e-4829adaec96a
